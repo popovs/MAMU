@@ -18,3 +18,11 @@ BugReports: https://github.com/popovs/MAMU/issues
 Depends: 
     R (>= 2.10)
 LazyData: true
+Imports: 
+    fasterize,
+    janitor,
+    lubridate,
+    raster,
+    readxl,
+    sf,
+    stringr

@@ -79,7 +79,7 @@ process_radar_data <- function(path,
   # Consolidate a few sites
   # If user provided site groupings, use that. Otherwise use default
   if (missing(site_groupings)) {
-    sites_cons <- rs
+    sites_cons <- MAMU::rs
   } else {
     sites_cons <- site_groupings
   }
