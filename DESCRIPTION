@@ -1,6 +1,6 @@
 Package: MAMU
 Title: Functions for BC Marbled Murrelet (MAMU) Forestry analyses
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: 
     person("Sarah", "Popov", , "sarah.popov@mail.mcgill.ca", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-8257-6438"))
