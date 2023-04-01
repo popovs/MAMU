@@ -47,7 +47,8 @@ NULL
 #' @format A spatial feature (`sf`) object containing 130 features
 #' \describe{
 #'  \item{fid}{Feature ID of the polygon. Primary key differentiating each unique polygon and used to match radar survey data to catchments.}
-#'  \item{region}{MAMU conservation region the catchment falls within.}
+#'  \item{region}{MAMU conservation region the catchment falls within, as originally defined in FLNR polygons.}
+#'  \item{region_2}{MAMU conservation region the catchment falls within, as defined by ECCC.}
 #'  \item{code}{Short alphanumeric code abbreviating the catchment name.}
 #'  \item{catchment}{Name of the catchment.}
 #'  \item{version}{Version number of the catchment. Useful to keep track of cases where the catchment has multiple iterations and been re-drawn (e.g., see Artlish or Toquart for an example).}
