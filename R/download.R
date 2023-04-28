@@ -77,7 +77,7 @@ download_zip <- function(url, dir) {
 #' `r lifecycle::badge('experimental')`
 #'
 #' Download \href{https://www2.gov.bc.ca/gov/content/data/geographic-data-services/topographic-data/elevation/digital-elevation-model}{BC DEM data}
-#' in grided Canadian Digital Elevation Data (CDED) format.
+#' in gridded Canadian Digital Elevation Data (CDED) format.
 #'
 #' *WARNING*: this function is still unstable, and will cause your R Session to abort
 #' if you download a large number of tiles. But do not despair! If you download many
@@ -88,7 +88,7 @@ download_zip <- function(url, dir) {
 #' one of the `Rtmp*/DEM_ZIP/DEM` directories on your computer. No need go through the time
 #' consuming step of re-downloading all your rasters.
 #'
-#' @param letterblock Character vector of map tiles of DEM data to download, e.g. `'92b'` for a single tile or `c('92b', '92g')` for multiple tiles. See the BC Maps & Orthos Base Map Online Store here for a visual: \url{https://a100.gov.bc.ca/ext/mtec/public/products/mapsheet}
+#' @param letterblock Map tiles of DEM data to download, e.g. `'92b'`. See the BC Maps & Orthos Base Map Online Store here for a visual: \url{https://a100.gov.bc.ca/ext/mtec/public/products/mapsheet}
 #' @param save_output Logical (T/F). Should the downloaded DEM be saved to your local disk? Default TRUE.
 #' @param overwrite Logical (T/F). Should the downloaded DEM overwrite any existing BC DEM data on the disk, if already present? Default FALSE.
 #' @param output_dir Output directory to save downloaded DEM to. Defaults to current working directory.
@@ -98,10 +98,9 @@ download_zip <- function(url, dir) {
 #' @export
 #'
 #' @examples
-#' \dontrun {
-#' BC_DEM("92b", save_output = F) # download Victoria area DEM
-#' BC_DEM(c("92b", "92g", "92f", "92c"), output_dir = "temp/bc_dem") # download SW Vancouer island + lower mainland DEM and save output to the "temp/bc_dem" directory. The generated file will be "temp/bc_dem/92b_92c_92f_92g.dem"
-#' BC_DEM(c("103k", "103j", "103f", "103g", "103c", "103b", "102o"), output_dir = "temp/bc_dem", filename = "haida_gwaii.dem") # download Haida Gwaii DEM and save output to "temp/bc_dem/haida_gwaii.dem"
+#' \dontrun{
+#' BC_DEM("92b", save_output = F) # download Victoria area DEM, don't save it
+#' BC_DEM("103f", output_dir = "temp/bc_dem", filename = "haida_gwaii.dem") # download one tile of Haida Gwaii DEM and save output to "temp/bc_dem/haida_gwaii.dem"
 #' }
 BC_DEM <- function(letterblock,
                    save_output = TRUE,
@@ -110,8 +109,9 @@ BC_DEM <- function(letterblock,
                    filename = NA) {
   # Check and clean up provided letterblocks
   tiles_to_download <- letterblock
-  stopifnot("`letterblock` must be a character vector, e.g. '103k' for a single letterblock or 'c('103k', '103j', '92n')' for multiple letterblocks." =
+  stopifnot("`letterblock` must be a character vector, e.g. '103k' for a single letterblock." =
               inherits(tiles_to_download, "character"))
+  stopifnot("You can only download one letterblock at a time." = (length(letterblock) == 1))
   tiles_to_download <- tolower(tiles_to_download)
   tiles_to_download <- unique(tiles_to_download)
 
@@ -152,7 +152,7 @@ BC_DEM <- function(letterblock,
   tiles_ls <- list.files(file.path(tmp, "DEM_ZIP", "DEM"), full.names = TRUE)
 
   # Now work terra magic
-  message("Stitching together your DEMs...")
+  message("Stitching together your DEM...")
   # Now read rasters with terra
   rlist <- lapply(tiles_ls, terra::rast)
   # Create SpatRasterCollection

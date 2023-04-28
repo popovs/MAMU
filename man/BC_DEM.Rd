@@ -13,7 +13,7 @@ BC_DEM(
 )
 }
 \arguments{
-\item{letterblock}{Character vector of map tiles of DEM data to download, e.g. \code{'92b'} for a single tile or \code{c('92b', '92g')} for multiple tiles. See the BC Maps & Orthos Base Map Online Store here for a visual: \url{https://a100.gov.bc.ca/ext/mtec/public/products/mapsheet}}
+\item{letterblock}{Map tiles of DEM data to download, e.g. \code{'92b'}. See the BC Maps & Orthos Base Map Online Store here for a visual: \url{https://a100.gov.bc.ca/ext/mtec/public/products/mapsheet}}
 
 \item{save_output}{Logical (T/F). Should the downloaded DEM be saved to your local disk? Default TRUE.}
 
@@ -30,7 +30,7 @@ A RasterSpat object.
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 
 Download \href{https://www2.gov.bc.ca/gov/content/data/geographic-data-services/topographic-data/elevation/digital-elevation-model}{BC DEM data}
-in grided Canadian Digital Elevation Data (CDED) format.
+in gridded Canadian Digital Elevation Data (CDED) format.
 
 \emph{WARNING}: this function is still unstable, and will cause your R Session to abort
 if you download a large number of tiles. But do not despair! If you download many
@@ -42,9 +42,8 @@ one of the \verb{Rtmp*/DEM_ZIP/DEM} directories on your computer. No need go thr
 consuming step of re-downloading all your rasters.
 }
 \examples{
-\dontrun {
-BC_DEM("92b", save_output = F) # download Victoria area DEM
-BC_DEM(c("92b", "92g", "92f", "92c"), output_dir = "temp/bc_dem") # download SW Vancouer island + lower mainland DEM and save output to the "temp/bc_dem" directory. The generated file will be "temp/bc_dem/92b_92c_92f_92g.dem"
-BC_DEM(c("103k", "103j", "103f", "103g", "103c", "103b", "102o"), output_dir = "temp/bc_dem", filename = "haida_gwaii.dem") # download Haida Gwaii DEM and save output to "temp/bc_dem/haida_gwaii.dem"
+\dontrun{
+BC_DEM("92b", save_output = F) # download Victoria area DEM, don't save it
+BC_DEM("103f", output_dir = "temp/bc_dem", filename = "haida_gwaii.dem") # download one tile of Haida Gwaii DEM and save output to "temp/bc_dem/haida_gwaii.dem"
 }
 }
