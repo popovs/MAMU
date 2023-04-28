@@ -48,3 +48,43 @@ rasterize_vri <- function(path,
 
   return(vri)
 }
+
+
+#' Virtual Raster Dataset
+#'
+#' Create VRT from a list of DEM files. This function is a simple wrapper of the [terra::vrt()] function.
+#'
+#' @param path Path to directory containing DEM files you wish to assemble into a VRT
+#' @param filename Output VRT filename
+#' @param overwrite Logical (T/F). Should `filename` be overwritten if it exists?
+#'
+#' @return A SpatRaster object.
+#' @export
+#'
+#' @examples \dontrun{
+#' # Download some BC DEM tiles...
+#' tiles <- c("92h", "93c", "93l", "93m", "104a", "104b")
+#' sapply(tiles, BC_DEM,
+#'        save_output = TRUE,
+#'        overwrite = FALSE,
+#'        output_dir = "temp/DEM_tiles/")
+#' # Create VRT
+#' make_vrt(path = "temp/DEM_tiles/", filename = "temp/BC_DEM_VRT.vrt", overwrite = TRUE)
+#' }
+make_vrt <- function(path, filename, overwrite = FALSE) {
+  # Pull all DEM filepaths. Note it uses absolute path, not relative path
+  dem_files <- normalizePath(list.files(path, full.names = TRUE))
+
+  # Check for presence of DEM files
+  stopifnot("There are no .dem files in the provided `path` directory." = any(grepl(".dem$", dem_files)))
+
+  # Fix filename if needed
+  if (!grepl(".vrt$", filename)) filename <- paste0(filename, ".vrt")
+
+  # Create a virtual raster that points to all the DEM files
+  vrt <- terra::vrt(dem_files,
+                    filename = filename,
+                    overwrite = overwrite)
+
+  return(vrt)
+}
