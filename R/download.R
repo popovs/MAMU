@@ -73,6 +73,21 @@ download_zip <- function(url, dir) {
 
 #' Download British Columbia Digital Elevation Model data
 #'
+#' @description
+#' `r lifecycle::badge('experimental')`
+#'
+#' Download \href{https://www2.gov.bc.ca/gov/content/data/geographic-data-services/topographic-data/elevation/digital-elevation-model}{BC DEM data}
+#' in grided Canadian Digital Elevation Data (CDED) format.
+#'
+#' *WARNING*: this function is still unstable, and will cause your R Session to abort
+#' if you download a large number of tiles. But do not despair! If you download many
+#' tiles and your R Session aborts while attempting to stitch your rasters together, the
+#' downloaded and unzipped .dem files are somewhere on your machine - R just ran out of
+#' memory when actually trying to stitch them together. If you open a new R Session and
+#' enter `tempdir()` into the console, your raster data is somewhere in that vicinity, in
+#' one of the `Rtmp*/DEM_ZIP/DEM` directories on your computer. No need go through the time
+#' consuming step of re-downloading all your rasters.
+#'
 #' @param letterblock Character vector of map tiles of DEM data to download, e.g. `'92b'` for a single tile or `c('92b', '92g')` for multiple tiles. See the BC Maps & Orthos Base Map Online Store here for a visual: \url{https://a100.gov.bc.ca/ext/mtec/public/products/mapsheet}
 #' @param save_output Logical (T/F). Should the downloaded DEM be saved to your local disk? Default TRUE.
 #' @param overwrite Logical (T/F). Should the downloaded DEM overwrite any existing BC DEM data on the disk, if already present? Default FALSE.

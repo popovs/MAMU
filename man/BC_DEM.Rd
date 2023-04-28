@@ -27,7 +27,19 @@ BC_DEM(
 A RasterSpat object.
 }
 \description{
-Download British Columbia Digital Elevation Model data
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+
+Download \href{https://www2.gov.bc.ca/gov/content/data/geographic-data-services/topographic-data/elevation/digital-elevation-model}{BC DEM data}
+in grided Canadian Digital Elevation Data (CDED) format.
+
+\emph{WARNING}: this function is still unstable, and will cause your R Session to abort
+if you download a large number of tiles. But do not despair! If you download many
+tiles and your R Session aborts while attempting to stitch your rasters together, the
+downloaded and unzipped .dem files are somewhere on your machine - R just ran out of
+memory when actually trying to stitch them together. If you open a new R Session and
+enter \code{tempdir()} into the console, your raster data is somewhere in that vicinity, in
+one of the \verb{Rtmp*/DEM_ZIP/DEM} directories on your computer. No need go through the time
+consuming step of re-downloading all your rasters.
 }
 \examples{
 \dontrun {
