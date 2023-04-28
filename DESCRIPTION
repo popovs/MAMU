@@ -22,7 +22,11 @@ Imports:
     fasterize,
     janitor,
     lubridate,
+    magrittr,
+    rappdirs,
     raster,
     readxl,
+    rvest (>= 1.0.3),
     sf,
-    stringr
+    stringr,
+    terra (>= 1.7.18)
