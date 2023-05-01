@@ -2,9 +2,12 @@
 
 #' Rasterize VRI polygons
 #'
+#' @description
+#' `r lifecycle::badge('deprecated')`
+#'
 #' [rasterize_vri()] will quickly rasterize a given VRI (multi)polygon using [fasterize::fasterize()]
 #' under the hood at a default resolution of 10x10 m per pixel. By default, the function
-#' filters out any polygons occuring >900m elevation as reported in the VRI 'Elevation' column.
+#' filters out any polygons occurring >900m elevation as reported in the VRI 'Elevation' column.
 #'
 #' @param path Path to either .gdb directory, .shp file, or .gpkg containing the VRI polygons.
 #' @param layer If path is a Geodatabase or Geopackage, layer name of the VRI polygons.
@@ -12,7 +15,6 @@
 #' @param res Resolution in meters of the resultant raster. Default 10 m^2.
 #'
 #' @return
-#' @export
 #'
 #' @examples
 #' path <- "~/Documents/path/to/VRI.gdb"

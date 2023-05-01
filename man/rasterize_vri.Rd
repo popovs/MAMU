@@ -19,9 +19,11 @@ rasterize_vri(path, layer, below_900m = TRUE, res = 10)
 
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
 \code{\link[=rasterize_vri]{rasterize_vri()}} will quickly rasterize a given VRI (multi)polygon using \code{\link[fasterize:fasterize]{fasterize::fasterize()}}
 under the hood at a default resolution of 10x10 m per pixel. By default, the function
-filters out any polygons occuring >900m elevation as reported in the VRI 'Elevation' column.
+filters out any polygons occurring >900m elevation as reported in the VRI 'Elevation' column.
 }
 \examples{
 path <- "~/Documents/path/to/VRI.gdb"
