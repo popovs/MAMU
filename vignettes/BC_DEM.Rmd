@@ -1,0 +1,33 @@
+---
+title: "Download British Columbia Digital Elevation Model data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{BC_DEM}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The province of British Columbia has two digital elevation model (DEM) datasets [available on their website](https://www2.gov.bc.ca/gov/content/data/geographic-data-services/topographic-data/elevation/digital-elevation-model) for download. The 25m resolution gridded Canadian Digital Elevation Data (CDED) format DEM is free, but it's [fairly complicated to get](https://pub.data.gov.bc.ca/datasets/175624/) user-friendly data - the user must first determine which DEM map tile they wish to download, download each strip of the tile as a zipped file, unzip all the strips, and stitch the strip together into a single usable DEM raster file. The `BC_DEM()` function automates this entire process for you. Simply specify the map tile you wish to download and the function will take care of everything else for you.
+
+## Determine map tile to download
+
+The map tiles available for download correspond to the [BC Maps & Orthos](https://a100.gov.bc.ca/ext/mtec/public/products/mapsheet) tiles. At the moment, `BC_DEM` only supports downloading one map tile at a time.
+
+![BC map tiles available for download](BC-map-tiles.png){width=50%}
+
+```{r setup}
+library(MAMU)
+
+# Download Vancouver-area DEM
+dem <- BC_DEM("92g",
+              save_output = FALSE)
+
+terra::plot(dem)
+```

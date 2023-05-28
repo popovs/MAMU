@@ -14,6 +14,8 @@ coverage](https://codecov.io/gh/popovs/MAMU/branch/main/graph/badge.svg)](https:
 [![R-CMD-check](https://github.com/popovs/MAMU/workflows/R-CMD-check/badge.svg)](https://github.com/popovs/MAMU/actions)
 <!-- badges: end -->
 
+`MAMU` is a still-experiemental suite of functions to assist in the mapping and modeling of marbled murrelet populations in British Columbia, Canada. 
+
 ## Installation
 
 You can install the development version of MAMU like so:

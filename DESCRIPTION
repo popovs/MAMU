@@ -8,6 +8,8 @@ Description: This package includes functions to read and clean MAMU datasets (e.
 License: MIT + file LICENSE
 Suggests: 
     covr,
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Encoding: UTF-8
@@ -31,3 +33,4 @@ Imports:
     sf,
     stringr,
     terra (>= 1.7.18)
+VignetteBuilder: knitr
