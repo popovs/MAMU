@@ -12,6 +12,7 @@ This package includes functions to read and clean MAMU datasets (e.g., radar sur
 Useful links:
 \itemize{
   \item \url{https://github.com/popovs/MAMU}
+  \item \url{https://popovs.github.io/MAMU/}
   \item Report bugs at \url{https://github.com/popovs/MAMU/issues}
 }
 
