@@ -1,5 +1,5 @@
 ---
-title: "Download British Columbia Digital Elevation Model data"
+title: "BC_DEM"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{BC_DEM}
@@ -13,6 +13,8 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
+
+# Download British Columbia Digital Elevation Model data
 
 The province of British Columbia has two digital elevation model (DEM) datasets [available on their website](https://www2.gov.bc.ca/gov/content/data/geographic-data-services/topographic-data/elevation/digital-elevation-model) for download. The 25m resolution gridded Canadian Digital Elevation Data (CDED) format DEM is free, but it's [fairly complicated to get](https://pub.data.gov.bc.ca/datasets/175624/) user-friendly data - the user must first determine which DEM map tile they wish to download, download each strip of the tile as a zipped file, unzip all the strips, and stitch the strip together into a single usable DEM raster file. The `BC_DEM()` function automates this entire process for you. Simply specify the map tile you wish to download and the function will take care of everything else for you.
 
