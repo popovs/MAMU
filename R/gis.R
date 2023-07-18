@@ -90,3 +90,58 @@ make_vrt <- function(path, filename, overwrite = FALSE) {
 
   return(vrt)
 }
+
+
+#' Buffers around radar survey sites
+#'
+#' Calculate 10, 20, 30, 40, and 50 km buffers around a given set of
+#' radar survey sites.
+#'
+#' @param surveys A dataframe of cleaned radar survey data; i.e., the output from [process_radar_data()].
+#'
+#' @return An sf object
+#' @export
+#'
+#' @examples
+#' surveys <- process_radar_data("~/Documents/path/to/radar/data.xlsx")
+#' buffs <- radar_buffers(surveys)
+#' plot(sf::st_geometry(buffs))
+radar_buffers <- function(surveys) {
+  # Create sf object of mean coordinate per survey station
+  # Also include count column to get n surveys at each
+  # unique site
+  stn <- surveys %>%
+    dplyr::select(site) %>%
+    dplyr::group_by(site) %>%
+    dplyr::mutate(count = dplyr::n()) %>%
+    dplyr::aggregate(.,
+              by = list(.$site),
+              function(x) x = x[1]) %>%
+    dplyr::st_centroid() %>%
+    dplyr::select(-Group.1)
+
+  # Now buffer
+  buffers <- list()
+  for (i in 1:5) {
+    km <- i * 10000
+
+    buff <- stn %>%
+      sf::st_transform(crs = 3005) %>%
+      sf::st_buffer(km) %>%
+      sf::st_union() %>%
+      sf::st_as_sf()
+
+    buff$km <- km
+
+    buffers[[i]] <- buff
+    names(buffers)[i] <- km
+    rm(km, buff, i)
+  }
+
+  buffers <- do.call(rbind, buffers)
+  buffers$km <- factor(buffers$km,
+                       levels = c(10000, 20000, 30000, 40000, 50000),
+                       labels = c("10 km", "20 km", "30 km", "40 km", "50 km"))
+
+  return(buffers)
+}
