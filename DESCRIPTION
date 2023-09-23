@@ -34,5 +34,5 @@ Imports:
     rvest (>= 1.0.3),
     sf (>= 1.0),
     stringr,
-    terra (>= 1.7.18)
+    terra (>= 1.7.46)
 VignetteBuilder: knitr

@@ -78,7 +78,7 @@ make_vrt <- function(path, filename, overwrite = FALSE) {
   dem_files <- normalizePath(list.files(path, full.names = TRUE))
 
   # Check for presence of DEM files
-  stopifnot("There are no .dem files in the provided `path` directory." = any(grepl(".dem$", dem_files)))
+  stopifnot("There are no .dem/.tiff files in the provided `path` directory." = any(grepl(".dem$|.tif$|.tiff$", dem_files)))
 
   # Fix filename if needed
   if (!grepl(".vrt$", filename)) filename <- paste0(filename, ".vrt")
