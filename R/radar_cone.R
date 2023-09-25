@@ -85,8 +85,10 @@ radar_cone <- function(pt, radius, heading,
                        theta = 0, res = 500, mask = TRUE,
                        invert = FALSE, maxvalue = 1) {
   # Data health checks
-  # Check that pt is a sf point object
-  stopifnot("`pt` must be a sf POINT feature." = inherits(pt, "sfc_POINT") == TRUE)
+  # Check that pt is a sf object
+  stopifnot("`pt` must be a sf feature." = inherits(pt, "sf") == TRUE)
+  # Check that pt is POINT geometry type
+  stopifnot("`pt` must be POINT type geometry." = all(sf::st_geometry_type(h) == "POINT"))
   # Check that radius > 0
   stopifnot("`radius` must have a positive value." = radius > 0)
   # Check that theta >= 0
