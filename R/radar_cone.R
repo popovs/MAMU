@@ -102,7 +102,7 @@ radar_cone <- function(pt, radius, heading,
   # This is sloppy trig, but it works, so......
   # 1) Multiply heading by -1 to ensure radians go clockwise (radians are measured counter-clockwise, by default)
   # 2) Multiply by pi/180 to convert to radians
-  # 3) Subtract 270° to rotate the angle clockwise by 270° (radians by default are measured from the x-axis,
+  # 3) Subtract from 180° to rotate the angle (radians by default are measured from the x-axis,
   #     i.e. "east", rather than "north" on a compass-rose)
   heading <- (180-heading) * (-pi/180)
   p_buff <- sf::st_buffer(pt, radius)
