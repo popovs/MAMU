@@ -121,7 +121,7 @@ radar_cone <- function(pt, radius, heading,
   v <- atan2(xy[,2], xy[,1])
 
   # Adjust values to fall along our heading of interest
-  v2 <- sin(v + heading)
+  v2 <- sin(v + heading) * -1
 
   # Re-scale values from 0-1 instead of -1-1
   # If theta = 0 (default), the output produces a smooth
