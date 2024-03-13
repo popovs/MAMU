@@ -68,7 +68,7 @@ cones_max10 <- mapply(radar_cone,
 ```
 
 
-```{r initial cones, echo = FALSE}
+```{r initial cones, echo = TRUE}
 par(mfrow = c(3, 4), oma=c(2,2,0,0))
 
 {
@@ -92,7 +92,7 @@ mtext("Maximum value (1, 5, 10)",side=2,line=0,outer=TRUE,cex=1.3)
 mtext("Wedge size (NA, 1/12, 1/4, 1/3)",side=1,line=0,outer=TRUE,cex=1.3,las=0)
 ```
 
-```{r wedge sizes, echo = FALSE}
+```{r wedge sizes, echo = TRUE}
 par(mfrow = c(3, 4), oma=c(2,2,0,0))
 
 terra::plot(cones_max1[[1]] == 0) # max value 1; theta = 0
