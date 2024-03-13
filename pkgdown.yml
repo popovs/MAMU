@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   BC_DEM: BC_DEM.html
   radar_cones: radar_cones.html
-last_built: 2024-03-13T06:51Z
+last_built: 2024-03-13T07:01Z
 urls:
   reference: https://popovs.github.io/MAMU/reference
   article: https://popovs.github.io/MAMU/articles
